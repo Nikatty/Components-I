@@ -15,7 +15,10 @@ let menuItems = [
 
   <div class="menu">
     <ul>
-      {each menu item as an <li>}
+      <li></li>
+      <li>something</li>
+      <li>something</li>
+      <li>something</li>
     </ul>
   </div>
 
@@ -32,3 +35,28 @@ let menuItems = [
 
   Step 6: Use 'menuMaker' to create a menu using the 'menuItems' array, and append the returned menu to the header.
 */
+
+function menuMaker(menuArr) {
+ const menu = document.createElement('div');
+ menu.classList.add('menu');
+ const unorderedList = document.createElement('ul');
+ 
+
+ menuArr.forEach(elm => {
+  const list = document.createElement('li');
+  list.appendChild(document.createTextNode(elm));
+  unorderedList.appendChild(list);
+ }) 
+menu.appendChild(unorderedList);
+
+ const menuButton = document.querySelector(".menu-button");
+ menuButton.addEventListener("click", () => {
+   menu.classList.toggle('menu--open');
+   console.log('SUP FOO');
+ })
+ return menu;
+}
+
+const menuStuff = menuMaker(menuItems);
+const header = document.querySelector('.header');
+header.appendChild(menuStuff);
